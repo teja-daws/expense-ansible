@@ -2,8 +2,8 @@
   hosts: backend
   become: yes
   vars:
-    mysql_root_password: "ExpenseApp@1"
-    login_host: "mysql.tejadevops.site"
+    mysql_root_password: ExpenseApp@1
+    login_host: mysql.tejadevops.site
   tasks:
   - name: disable default nodejs
     ansible.builtin.command: dnf module disable nodejs -y
@@ -34,8 +34,8 @@
       dest: /tmp/backend.zip
 
   - name: extract the downloaded code
-    ansible.builtin.unarchive:
-      src: /tmp/backend.zip
+    ansible.builtin.unarchive: 
+      src: /tmp/backend.zip #by default ansible thinks this is in ansible server
       dest: /app
       remote_src: yes
   
@@ -58,7 +58,7 @@
 
   - name: import mysql data
     community.mysql.mysql_db:
-      login_user: "root"
+      login_user: root
       login_password: "{{ mysql_root_password }}"
       login_host: "{{ login_host }}"
       target: /app/schema/backend.sql
