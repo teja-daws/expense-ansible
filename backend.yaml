@@ -44,7 +44,7 @@
   - name: copy backend service
     ansible.builtin.copy:
       src: backend.service
-      path: /etc/systemd/system/backend.sql
+      dest: /etc/systemd/system/backend.sql
 
   - name: import mysql data
     community.mysql.mysql_db:
