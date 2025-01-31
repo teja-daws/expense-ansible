@@ -10,7 +10,7 @@
 
   - name: enable nodejs 20
     ansible.builtin.command: dnf module enable nodejs:20 -y
-    
+
   - name: install nodejs
     ansible.builtin.package:
       name: "{{ item }}"
@@ -18,11 +18,11 @@
     loop:
     - nodejs
     - mysql
-    
+
   - name: create expense user
     ansible.builtin.user:
       name: expense
-  
+
   - name: create app directory
     ansible.builtin.file:
       path: /app
@@ -33,12 +33,12 @@
       url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
       dest: /tmp/backend.zip
 
-  - name: extract the downloaded code
-    ansible.builtin.unarchive: 
+  - name: extract the code
+    ansible.builtin.unarchive:
       src: /tmp/backend.zip #by default ansible thinks this is in ansible server
       dest: /app
       remote_src: yes
-  
+
   - name: install dependencies
     ansible.builtin.command: npm install
     args:
@@ -52,7 +52,7 @@
   - name: ansible to install pymysql
     ansible.builtin.pip:
       name:
-      - pymysql
+      - PyMySQL
       - cryptography
       executable: pip3.9
 
