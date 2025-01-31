@@ -70,9 +70,3 @@
       daemon_reload: true
       state: restarted
       name: backend
-
-  - name: restart service
-    ansible.builtin.service:
-      name: backend
-      enabled: yes
-      state: restarted
