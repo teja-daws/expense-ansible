@@ -65,8 +65,8 @@
       name: all
       state: import
 
-  - name: deamon reload
+  - name: daemon reload
     ansible.builtin.systemd_service:
-      deamon_reload: true
+      daemon_reload: true
       state: restarted
       name: backend
